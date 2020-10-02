@@ -37,12 +37,12 @@
         $this->db->beginTransaction();
 
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $query1 = "INSERT INTO account (id, email, password) VALUES (NULL, '$email', '$password')";
+        $query1 = "INSERT INTO account (id, username, email, password, usertype_id) VALUES (NULL, '$username', '$email', '$password', 1)";
         $statement1 = $this->db->prepare($query1);
         $statement1->execute();
 
         $id = $this->db->lastInsertId();
-        $query2 = "INSERT INTO person (id, username, firstname, middlename, lastname, account_id) VALUES (NULL, '$username', '$firstname', '$middlename', '$lastname', $id)";
+        $query2 = "INSERT INTO person (id, firstname, middlename, lastname, account_id) VALUES (NULL, '$firstname', '$middlename', '$lastname', $id)";
         $statement2 = $this->db->prepare($query2);
         $statement2->execute();
 
