@@ -56,11 +56,3 @@ ALTER TABLE person
 -- Create usertype 'user' with id '1' in table 'usertype'
 INSERT INTO usertype (id, type, created, updated)
   VALUES ('1', 'user', NULL, NULL);
-
--- Create user 'admin' in table 'account'
-INSERT INTO account (id, email, password) 
-  VALUES ('1', 'admin@gmail.com', 'Welkom01');
-
--- Create user 'admin' in table 'person'
-INSERT INTO person (id, username, firstname, lastname, account_id) 
-  VALUES ('1', 'admin', 'Mike', 'Wazowski', '1');
