@@ -46,7 +46,7 @@
 			</div>
 			<div class="form-group">
 				<a href="signup.php"><input type="button" class="btn btn-default btn-sm" value="Sign Up"></a>
-				<a href="lostpsw.php"><input type="button" class="btn btn-default btn-sm" value="Recover Password"></a><br><BR>
+				<a href="lostpsw.php"><input type="button" class="btn btn-default btn-sm" value="Recover Password"></a><br><br>
 				<input type="submit" class="btn btn-light btn-block btn-lg" name="login" value="Login">
 			</div>
 		</form>
