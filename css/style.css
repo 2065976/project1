@@ -1,7 +1,22 @@
-body{ 
+body { 
   font: 14px sans-serif; 
 }
-        
-.wrapper{ 
-  width: 350px; padding: 20px; 
+
+.container {
+  border: 1px solid;
+  border-color: #9a9a9a;
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  width: 350px;
+  margin: 50px auto;
+}
+
+h2 {
+  text-align: left;
+  font-weight: bold;
+}
+
+label {
+  font-weight: normal;
 }
