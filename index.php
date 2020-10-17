@@ -33,7 +33,7 @@
 <body>
 	<div class="container">
 	<h2>Login</h2><br>
-		<form action="" method="post">
+		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" name="username" class="form-control" required>

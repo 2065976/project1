@@ -63,7 +63,7 @@ if (isset($_POST['signUp'])){
 <body>
   <div class="container">
     <h2>Sign Up</h2><br>
-    <form action="" method="post">
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 
     <div class="form-group">
       <label for="firstname">Firstname</label>
