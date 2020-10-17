@@ -2,26 +2,48 @@
 
 include_once "database.php";
 
-$db = new database('localhost', 'root', '', 'project1', 'utf8');
+$alert = "";
 
-// Insert data into database
+// Check all fields
 if (isset($_POST['signUp'])){
 
-  $firstname = ucwords($_POST['firstname']);
-  $middlename = $_POST['middlename'];
-  $lastname = ucwords($_POST['lastname']);
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $password_confirm = $_POST['password_confirm'];
+  $fieldnames = array('firstname', 'lastname', 'username', 'email', 'password', 'password_confirm');
 
-  if ($password === $password_confirm){
+  $error = false;
+
+  // Loop fieldnames in $_POST[]
+  foreach ($fieldnames as $data) {
+    if(empty($_POST[$data])){
+      $error = true;
+    }
+  }
+
+  // Alert when required fields are empty
+  if ($error) {  
+    $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Please fill in all required fields' .'</div>';    
+  }
+
+  // Insert data into database if everything is OK
+  else {
+
+    $db = new database("localhost", "root", "", "project1", "utf8");
+
+    $firstname = ucwords($_POST['firstname']);
+    $middlename = $_POST['middlename'];
+    $lastname = ucwords($_POST['lastname']);
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password_confirm = $_POST['password_confirm'];
+
+  }
+
+  // Alert when passwords do not match
+  if ($password != $password_confirm) {
+    $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Passwords do not match' .'</div>';
+
+  }else {
     $db->signUp($firstname, $middlename, $lastname, $email, $password, $username);
-
-  } else {
-
-    echo "An error occured!";
-    
   }
   
 }
@@ -35,6 +57,8 @@ if (isset($_POST['signUp'])){
   <title>Sign Up</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="container">
@@ -91,6 +115,7 @@ if (isset($_POST['signUp'])){
     <p>Already have an account? <a href="index.php">Login here</a></p>
 
     </form>
-  </div>    
+    <?php echo $alert; ?>
+  </div>
 </body>
 </html>
