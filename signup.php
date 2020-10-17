@@ -1,22 +1,23 @@
 <?php
 
-include "database.php";
+include_once "database.php";
 
 $db = new database('localhost', 'root', '', 'project1', 'utf8');
 
+// Insert data into database
 if (isset($_POST['signUp'])){
 
-	$firstname = ucwords($_POST['firstname']);
-	$middlename = $_POST['middlename'];
-	$lastname = ucwords($_POST['lastname']);
-	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	$password_confirm = $_POST['password_confirm'];
+  $firstname = ucwords($_POST['firstname']);
+  $middlename = $_POST['middlename'];
+  $lastname = ucwords($_POST['lastname']);
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $password_confirm = $_POST['password_confirm'];
 
-	if ($password === $password_confirm){
+  if ($password === $password_confirm){
     $db->signUp($firstname, $middlename, $lastname, $email, $password, $username);
-    
+
   } else {
 
     echo "An error occured!";
@@ -36,9 +37,8 @@ if (isset($_POST['signUp'])){
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="wrapper">
-    <h2>Sign Up</h2>
-    <p>Please fill this form to create an account.</p>
+  <div class="container">
+    <h2>Sign Up</h2><br>
     <form action="" method="post">
 
     <div class="form-group">
@@ -60,7 +60,7 @@ if (isset($_POST['signUp'])){
     </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">E-mail</label>
       <input type="text" name="email" class="form-control" required>
       <span class="help-block"></span>
     </div>
@@ -84,11 +84,11 @@ if (isset($_POST['signUp'])){
     </div>
 
     <div class="form-group">
-      <input type="submit" class="btn btn-primary" name="signUp" value="Submit">
-      <a href="lostpsw.php"><input type="button" class="btn btn-default" value="Reset Password"></a>
+      <input type="submit" class="btn btn-light btn-block btn-lg" name="signUp" value="Submit">
     </div>
 
-    <p>Already have an account? <a href="index.php">Login here</a>.</p>
+    <span class="help-block"></span>
+    <p>Already have an account? <a href="index.php">Login here</a></p>
 
     </form>
   </div>    
