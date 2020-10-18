@@ -53,6 +53,9 @@ ALTER TABLE account
 ALTER TABLE person
   DROP column username;
 
--- Create usertype 'user' with id '1' in table 'usertype'
-INSERT INTO usertype (id, type, created, updated)
-  VALUES ('1', 'user', NULL, NULL);
+-- Create usertypes 'user', 'mod' and 'admin' in table 'usertype'
+INSERT INTO usertype (id, type)
+  VALUES 
+    ('1', 'user'),
+    ('2', 'mod'),
+	  ('3', 'admin');
