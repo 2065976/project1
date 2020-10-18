@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Password Recovery</h2><br>
+        <h2>Password Recovery</h2><hr>
         <form action="" method="post">
             <div class="form-group">
                 <label for="email">E-mail</label>
@@ -16,7 +16,7 @@
                 <span class="help-block"></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-light btn-block btn-lg" name="recover" value="Recover">
+                <input type="submit" class="btn btn-light btn-block btn-lg" name="recover" value="Submit">
             </div>
             <p>Don't have an account? <a href="signup.php">Sign up now</a></p>
         </form>
