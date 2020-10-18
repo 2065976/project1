@@ -32,7 +32,7 @@
 </head>
 <body>
 	<div class="container">
-	<h2>Login</h2><br>
+	<h2>Login</h2><hr>
 		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 			<div class="form-group">
 				<label for="username">Username</label>
@@ -49,7 +49,7 @@
 				<a href="lostpsw.php"><input type="button" class="btn btn-default btn-sm" value="Recover Password"></a><br><br>
 				<input type="submit" class="btn btn-light btn-block btn-lg" name="login" value="Login">
 			</div>
-		</form>
+		</form>	
 		<?php echo $alert; ?>
 	</div>
 </body>
