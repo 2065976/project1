@@ -1,21 +1,22 @@
 <?php
  
- session_start();
+session_start();
 
- include_once 'database.php';
+include_once 'database.php';
 
- $alert = "";
+$alert = "";
 
-   if (isset($_POST['login'])) {
+  if (isset($_POST['login'])) {
 
-      $alert = $_SESSION['alert'];
+		$alert = $_SESSION['alert'];
 
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 
-      $db = new database("localhost", "root", "", "project1", "utf8");
+		$db = new database("localhost", "root", "", "project1", "utf8");
 
-      $db->login($username, $password); 
+		$db->login($username, $password);
+
 	}
 	
 ?>
@@ -34,23 +35,28 @@
 	<div class="container">
 	<h2>Login</h2><hr>
 		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" name="username" class="form-control" required>
 				<span class="help-block"></span>
-			</div>    
+			</div>
+
 			<div class="form-group">
 				<label for="password">Password</label>
 				<input type="password" name="password" class="form-control" required>
 				<span class="help-block"></span>
 			</div>
+
 			<div class="form-group">
 				<a href="signup.php"><input type="button" class="btn btn-default btn-sm" value="Sign Up"></a>
 				<a href="lostpsw.php"><input type="button" class="btn btn-default btn-sm" value="Recover Password"></a><br><br>
 				<input type="submit" class="btn btn-light btn-block btn-lg" name="login" value="Login">
 			</div>
-		</form>	
+		</form>
+
 		<?php echo $alert; ?>
+		
 	</div>
 </body>
 </html>
