@@ -35,24 +35,29 @@ if (isset($_SESSION['username']) AND $type === 'user'){
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Info</a>
+        <a class="nav-link" href="#">User Info</a>
 			</li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Settings
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="logout.php">Log out</a>
-        </div>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Users</a>
+      </div>
       </li>
-		</ul>
-		<button class="btn btn-secondary btn-sm navbar-btn">Admin Panel</button>
-	</div>
-</nav>
-<br><br>
-<hr><br>
-<p></p>
-<br><hr>
+        <a class="btn btn-danger badge-pill btn-sm" href="logout.php" role="button">Logout</a>
+		  </ul>
+      </div>
+    <h6>Mike <span class="badge badge-pill badge-danger">Admin</span></h6>
+  </nav>
+
+    <hr>
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, Mike Wazowski!</h1>
+      <hr class="my-4">
+      <p class="lead">You are currently logged in as Mike</p>
+      <br><br><br><br><br>
+      <hr>
+    </div>
+  </div>
 </div>
 </body>
 </html>
