@@ -41,8 +41,9 @@
 
         // Hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $query1 = "INSERT INTO account (id, username, email, password, usertype_id) VALUES (NULL, :username, :email, :password, 1)";
+        $query1 = "INSERT INTO account (id, username, email, password, usertype_id) VALUES (NULL, :username, :email, :password, 3)";
         $statement1 = $this->db->prepare($query1);
+        
         // Execute statement1
         $statement1->execute(
           array(
@@ -56,6 +57,7 @@
         $id = $this->db->lastInsertId();
         $query2 = "INSERT INTO person (id, firstname, middlename, lastname, account_id) VALUES (NULL, :firstname, :middlename, :lastname, $id)";
         $statement2 = $this->db->prepare($query2);
+
         // Execute statement2
         $statement2->execute(
           array(
@@ -67,8 +69,12 @@
 
         // Commit changes
         $this->db->commit();
-        // Prevent adding extra data during refresh
+
+        // Redirect user to login form
         header("Location: index.php");
+
+        // Prevent further code being executed
+        exit;
 
       }catch (PDOException $e) {
         throw $e;
@@ -114,14 +120,14 @@
                     $_SESSION['password'] = $password;
                     $_SESSION['row'] = $rows;
                     $_SESSION['type'] = $rows[0]->type;
-                    header("Location: home.php"); 
+                    header("Location: home_admin.php"); 
 
                   }elseif($rows[0]->type === 'mod') {                        
                     $_SESSION['username'] = $username;
                     $_SESSION['password'] = $password;
                     $_SESSION['row'] = $rows;
                     $_SESSION['type'] = $rows[0]->type;
-                    header("Location: home.php"); 
+                    header("Location: home_mod.php");
 
                   }else {
                     $_SESSION['username'] = $username;
