@@ -40,12 +40,18 @@ if (isset($_SESSION['username']) AND $type === 'admin') {
         <a class="nav-link" href="#">User Info</a>
 			</li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Users</a>
+        <a class="dropdown-item" href="#">Change Info</a>
       </div>
       </li>
-        <a class="btn btn-danger badge-pill btn-sm" href="logout.php" role="button">Logout</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Edit Users</a>
+      </div>
+      </li>
+        <a class="nav-link" href="logout.php">Logout</a>
 		  </ul>
       </div>
     <h6>Mike <span class="badge badge-pill badge-danger">Admin</span></h6>
