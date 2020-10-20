@@ -10,6 +10,11 @@
     private $charset;
     private $db;
 
+    // create class constants (admin and user)
+    const ADMIN = 1;
+    const MOD = 2;
+    const USER = 3;
+
     public function __construct($host, $username, $password, $database, $charset) {
       $this->host = $host;
       $this->username = $username;
@@ -32,7 +37,7 @@
     }
 
     // SignUp function
-    public function signUp($firstname, $middlename, $lastname, $email, $password, $username) {
+    public function signUp($firstname, $middlename, $lastname, $email, $password, $username, $usertype_id=self::USER) {
 
       try {
 
@@ -41,7 +46,7 @@
 
         // Hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $query1 = "INSERT INTO account (id, username, email, password, usertype_id) VALUES (NULL, :username, :email, :password, 3)";
+        $query1 = "INSERT INTO account (id, username, email, password, usertype_id) VALUES (NULL, :username, :email, :password, :usertype_id)";
         $statement1 = $this->db->prepare($query1);
         
         // Execute statement1
@@ -49,7 +54,8 @@
           array(
               'username' => $username,
               'email' => $email,
-              'password' => $password
+              'password' => $password,
+              'usertype_id' => $usertype_id
           )
         );
 
@@ -92,7 +98,12 @@
         // Begin transaction
         $this->db->beginTransaction(); 
 
-        $query = "SELECT firstname, middlename, lastname, email, username, password, type FROM person INNER JOIN account ON person.account_id = account.id JOIN usertype ON account.usertype_id = usertype.id WHERE username = :username ";
+        $query = "SELECT firstname, middlename, lastname, email, username, password, type 
+        FROM person INNER JOIN account ON person.account_id = account.id 
+        JOIN usertype 
+        ON account.usertype_id = usertype.id 
+        WHERE username = :username ";
+
         $statement = $this->db->prepare($query);
 
         // Execute statement1
@@ -115,27 +126,39 @@
               if ($verify) {
                 session_start();
 
+                  // User has usertype 'admin'
                   if ($rows[0]->type === 'admin') {
+
                     $_SESSION['username'] = $username;
                     $_SESSION['password'] = $password;
                     $_SESSION['row'] = $rows;
                     $_SESSION['type'] = $rows[0]->type;
+
+                    // Redirect user to admin page
                     header("Location: home_admin.php"); 
 
-                  }elseif($rows[0]->type === 'mod') {                        
+                  // None of the above? Then user has usertype 'mod'
+                  }elseif($rows[0]->type === 'mod') {        
+
                     $_SESSION['username'] = $username;
                     $_SESSION['password'] = $password;
                     $_SESSION['row'] = $rows;
                     $_SESSION['type'] = $rows[0]->type;
+
+                    // Redirect user to mod page
                     header("Location: home_mod.php");
 
+                  // None of the above? Then user has default usertype 'user'
                   }else {
+                    
                     $_SESSION['username'] = $username;
                     $_SESSION['type'] = $rows[0]->type;
+
+                    // Redirect user to user page
                     header("Location: home.php"); 
                   }
 
-                // Alert when credentials are wrong
+                // Alert user when credentials are wrong
                 }else {
                   $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Username and/or password incorrect' .'</div>';
                   $_SESSION['alert'] = $alert;

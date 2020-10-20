@@ -28,13 +28,13 @@ if (isset($_POST['signUp'])){
 
     $db = new database("localhost", "root", "", "project1", "utf8");
 
-    $firstname = ucwords($_POST['firstname']);
-    $middlename = $_POST['middlename'];
-    $lastname = ucwords($_POST['lastname']);
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
+    $firstname = ucwords(trim(strtolower($_POST['firstname'])));
+    $middlename = trim(strtolower($_POST['middlename']));
+    $lastname = ucwords(trim(strtolower($_POST['lastname'])));
+    $username = trim(strtolower($_POST['username']));
+    $email = trim(strtolower($_POST['email']));
+    $password = trim(strtolower($_POST['password']));
+    $password_confirm = trim(strtolower($_POST['password_confirm']));
 
   }
 
@@ -43,7 +43,7 @@ if (isset($_POST['signUp'])){
     $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Passwords do not match' .'</div>';
 
   }else {
-    $db->signUp($firstname, $middlename, $lastname, $email, $password, $username);
+    $db->signUp($firstname, $middlename, $lastname, $email, $password, $username, $db::USER);
   }
   
 }
