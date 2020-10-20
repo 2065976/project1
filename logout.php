@@ -1,9 +1,10 @@
 <?php
 
+// Initialize the session.
 session_start();
 
-unset($_SESSION["username"]);
-unset($_SESSION["password"]);
+// Unset all session variables
+$_SESSION = [];
 
 // Destroy user session
 session_destroy();
