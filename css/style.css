@@ -20,3 +20,13 @@ h2 {
 label {
   font-weight: normal;
 }
+
+.container2 {
+  border: 1px solid;
+  border-color: #9a9a9a;
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  width: 50%;
+  margin: 50px auto;
+}
