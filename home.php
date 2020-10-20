@@ -4,11 +4,12 @@ session_start();
 
 $type = $_SESSION['type'];
 
-if (isset($_SESSION['username']) AND $type === 'user'){
+if (isset($_SESSION['username']) AND $type === 'user') {
     echo ""; 
-}else{
-    header("Location: index.php");
-}
+
+  }else{
+      header("Location: index.php");
+  }
 
 ?>
 
@@ -38,15 +39,15 @@ if (isset($_SESSION['username']) AND $type === 'user'){
         <a class="nav-link" href="#">User Info</a>
 			</li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Users</a>
+        <a class="dropdown-item" href="#">Change Info</a>
       </div>
       </li>
-        <a class="btn btn-danger badge-pill btn-sm" href="logout.php" role="button">Logout</a>
+        <a class="nav-link" href="logout.php">Logout</a>
 		  </ul>
       </div>
-    <h6>Mike <span class="badge badge-pill badge-danger">Admin</span></h6>
+    <h6>Mike <span class="badge badge-pill badge-success">User</span></h6>
   </nav>
 
     <hr>
