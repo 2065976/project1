@@ -56,6 +56,6 @@ ALTER TABLE person
 -- Create usertypes 'user', 'mod' and 'admin' in table 'usertype'
 INSERT INTO usertype (id, type)
   VALUES 
-    ('1', 'user'),
+    ('1', 'admin'),
     ('2', 'mod'),
-	  ('3', 'admin');
+    ('3', 'user');
