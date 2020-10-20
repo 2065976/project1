@@ -1,11 +1,11 @@
 <?php
 
-include_once "database.php";
+include_once 'database.php';
 
-$alert = "";
+$alert = '';
 
 // Check all fields
-if (isset($_POST['signUp'])){
+if (isset($_POST['signUp'])) {
 
   $fieldnames = array('firstname', 'lastname', 'username', 'email', 'password', 'password_confirm');
 
@@ -13,14 +13,20 @@ if (isset($_POST['signUp'])){
 
   // Loop fieldnames in $_POST[]
   foreach ($fieldnames as $data) {
-    if(empty($_POST[$data])){
+
+    if(!isset($_POST[$data]) || empty($_POST[$data])){
+
       $error = true;
+
     }
+
   }
 
   // Alert when required fields are empty
-  if ($error) {  
-    $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Please fill in all required fields' .'</div>';    
+  if ($error) { 
+ 
+    $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Please fill in all required fields' .'</div>';
+
   }
 
   // Insert data into database if everything is OK
@@ -40,12 +46,15 @@ if (isset($_POST['signUp'])){
 
   // Alert when passwords do not match
   if ($password != $password_confirm) {
+
     $alert = '<div class="alert alert-warning"><a href="#" class="close" alert-block data-dismiss="alert" aria-label="close">&times;</a>'.'Passwords do not match' .'</div>';
 
   }else {
+
     $db->signUp($firstname, $middlename, $lastname, $email, $password, $username, $db::USER);
+
   }
-  
+
 }
 
 ?>
@@ -63,8 +72,8 @@ if (isset($_POST['signUp'])){
 <body>
   <div class="container">
     <h2>Sign Up</h2><hr>
-    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
     <div class="form-group">
       <label for="firstname">Firstname</label>
       <input type="text" id="firstname" name="firstname" class="form-control" required>
@@ -113,9 +122,10 @@ if (isset($_POST['signUp'])){
 
     <span class="help-block"></span>
     <p>Already have an account? <a href="index.php">Login here</a></p>
-
     </form>
+
     <?php echo $alert; ?>
+
   </div>
 </body>
 </html>

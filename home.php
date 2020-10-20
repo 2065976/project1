@@ -1,11 +1,12 @@
 <?php 
 
+// Initialize the session.
 session_start();
 
 $type = $_SESSION['type'];
 
 if (isset($_SESSION['username']) AND $type === 'user') {
-    echo ""; 
+  echo '';
 
   }else{
       header("Location: index.php");
@@ -47,14 +48,14 @@ if (isset($_SESSION['username']) AND $type === 'user') {
         <a class="nav-link" href="logout.php">Logout</a>
 		  </ul>
       </div>
-    <h6>Mike <span class="badge badge-pill badge-success">User</span></h6>
+    <h6><?php echo $_SESSION['username']; ?> <span class="badge badge-pill badge-success">User</span></h6>
   </nav>
 
     <hr>
     <div class="jumbotron">
-      <h1 class="display-4">Hello, Mike Wazowski!</h1>
+      <h1 class="display-4">Hello <?php echo $_SESSION['username']; ?>,</h1>
       <hr class="my-4">
-      <p class="lead">You are currently logged in as Mike</p>
+      <p class="lead">You have been successfully logged in! </p>
       <br><br><br><br><br>
       <hr>
     </div>
